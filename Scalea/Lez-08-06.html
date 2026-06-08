@@ -157,9 +157,19 @@
             margin-top: 15px;
         }
 
+        /* Struttura colonne del gioco */
+        .game-columns {
+            display: flex; 
+            gap: 15px; 
+            margin-bottom: 25px;
+        }
+
         @media (max-width: 600px) {
             .badge-container {
                 flex-direction: column;
+            }
+            .game-columns {
+                flex-direction: column; /* Incolonna il gioco sui telefoni */
             }
         }
 
@@ -298,11 +308,79 @@
                     <h3>Lettura e Ascolto / Reading and Listening</h3>
                 </div>
                 <span class="lang-it">Abbiamo ascoltato e letto insieme il testo "La Macchina".</span>
-                <span class="lang-en">We listened to and read the text "La Macchina" together (the story of Dr. Donelli and his beloved car!).</span>
+                <span class="lang-en">We listened to and read the text "La Macchina" together (the story of Dr. Donelli and his beloved car!).[span_0](start_span)[span_0](end_span)</span>
                 <img src="img/macchina.jpg" alt="La Macchina" class="lesson-img">
             </div>
 
-        </div>
+            <!-- SEZIONE COMPITI INTERATTIVI (GRAMMATICA DEL FARE) -->
+            <div class="section-card" style="border-left-color: var(--accent-color);">
+                <div class="section-title">
+                    <span class="emoji">🎮</span>
+                    <h3 style="color: var(--accent-color);">Gioco Interattivo: Scalea "Da turista" o "Da abitante"?</h3>
+                </div>
+                <p style="margin-bottom: 20px; font-style: italic; color: var(--text-muted);">
+                    Clicca sulle azioni per metterle nella colonna giusta! / Click on the actions to place them in the correct column!
+                </p>
+
+                <!-- Azioni da smistare -->
+                <div id="actions-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; justify-content: center;">
+                    <div class="game-btn" onclick="checkChoice(this, 'turista')" style="padding: 10px 15px; background: #eef2f5; border: 2px solid #cbd5e1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                        Faccio il bagno al Lido Nettuno 🏊‍♂️
+                    </div>
+                    <div class="game-btn" onclick="checkChoice(this, 'abitante')" style="padding: 10px 15px; background: #eef2f5; border: 2px solid #cbd5e1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                        Pago la bolletta della luce ⚡
+                    </div>
+                    <div class="game-btn" onclick="checkChoice(this, 'turista')" style="padding: 10px 15px; background: #eef2f5; border: 2px solid #cbd5e1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                        Faccio le foto al Castello di Scalea 📸
+                    </div>
+                    <div class="game-btn" onclick="checkChoice(this, 'abitante')" style="padding: 10px 15px; background: #eef2f5; border: 2px solid #cbd5e1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                        Butto l'immondizia la sera 🗑️
+                    </div>
+                    <div class="game-btn" onclick="checkChoice(this, 'turista')" style="padding: 10px 15px; background: #eef2f5; border: 2px solid #cbd5e1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                        Compro un souvenir di Scalea 🎁
+                    </div>
+                    <div class="game-btn" onclick="checkChoice(this, 'abitante')" style="padding: 10px 15px; background: #eef2f5; border: 2px solid #cbd5e1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
+                        Pulisco il cortile della casa 🧹
+                    </div>
+                </div>
+
+                <!-- Colonne di destinazione -->
+                <div class="game-columns">
+                    <div id="col-turista" style="flex: 1; background: #f0fdf4; border: 2px dashed #16a34a; border-radius: 15px; padding: 15px; min-height: 120px;">
+                        <h4 style="color: #16a34a; text-align: center; margin-bottom: 10px;">🧳 Da turista</h4>
+                        <ul id="list-turista" style="padding: 0; list-style: none;"></ul>
+                    </div>
+                    <div id="col-abitante" style="flex: 1; background: #eff6ff; border: 2px dashed #2563eb; border-radius: 15px; padding: 15px; min-height: 120px;">
+                        <h4 style="color: #2563eb; text-align: center; margin-bottom: 10px;">🏠 Da abitante</h4>
+                        <ul id="list-abitante" style="padding: 0; list-style: none;"></ul>
+                    </div>
+                </div>
+
+                <hr style="border: none; border-top: 1px dashed #cbd5e1; margin-bottom: 20px;">
+
+                <!-- Altri esercizi tradizionali scritti corti -->
+                <ul style="padding-left: 5px;">
+                    <li style="margin-bottom: 20px; border-bottom: 1px dashed #eef2f5; padding-bottom: 15px;">
+                        <span class="lang-it">2. A tavola e con gli amici (I verbi) 🧂</span>
+                        <span class="lang-en">Complete the sentences in the present tense with: <strong>passi</strong>, <strong>regali</strong>, <strong>presti</strong>.</span>
+                        <span class="translation-sub" style="font-weight: normal; margin-top: 8px; display: block; line-height: 1.8;">
+                            1. A tavola: "Ian, per favore, mi ________ il sale?" 🧂<br>
+                            2. Oggi è il compleanno di un amico: tu ________ un libro. 🎁<br>
+                            3. Renata non ha la penna: tu ________ la tua penna per 5 minuti. 🖋️
+                        </span>
+                    </li>
+                    
+                    <li style="margin-bottom: 10px;">
+                        <span class="lang-it">3. La mia macchina 🚗</span>
+                        <span class="lang-en">Describe your car (or your dream car). Use the verb "essere" in the present tense and 3 simple adjectives.[span_1](start_span)[span_1](end_span)</span>
+                        <span class="translation-sub" style="color: var(--primary-color); font-weight: normal; margin-top: 5px;">
+                            Es: "La mia macchina <strong>è</strong> piccola, rossa e nuova." ✨
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+        </div> <!-- FINE LESSON CONTENT -->
 
         <footer>
             <div class="feedback">Bravissimi! Siete andati molto bene oggi. 🌟</div>
@@ -311,6 +389,29 @@
             <div class="see-you" style="font-size: 1rem; color: var(--text-muted); font-weight: normal; margin-top: 5px;">See you at the next lesson!</div>
         </footer>
     </div>
+
+    <!-- LOGICA JAVASCRIPT DEL GIOCO -->
+    <script>
+        function checkChoice(element, correctCategory) {
+            const text = element.innerText;
+            
+            if (correctCategory === 'turista') {
+                const list = document.getElementById('list-turista');
+                const li = document.createElement('li');
+                li.style.cssText = "background: white; padding: 8px; margin-bottom: 5px; border-radius: 5px; font-size: 0.9rem; font-weight: 600; color: #16a34a; box-shadow: 0 2px 4px rgba(0,0,0,0.03);";
+                li.innerText = text;
+                list.appendChild(li);
+            } else {
+                const list = document.getElementById('list-abitante');
+                const li = document.createElement('li');
+                li.style.cssText = "background: white; padding: 8px; margin-bottom: 5px; border-radius: 5px; font-size: 0.9rem; font-weight: 600; color: #2563eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03);";
+                li.innerText = text;
+                list.appendChild(li);
+            }
+            
+            element.style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
