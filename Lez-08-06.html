@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riassunto Lezione - Gruppo Scalea</title>
+    <style>
+        /* Stili Generali e Palette Colori (Ispirata a Scalea e al Lido Nettuno) */
+        :root {
+            --primary-color: #1a5f7a;
+            --secondary-color: #57c5b6;
+            --accent-color: #f39c12;
+            --bg-color: #f0f8ff;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-muted: #7f8c8d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        /* Header con effetto sfumato mare */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .welcome-msg {
+            padding: 30px 30px 10px 30px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .translation-sub {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Griglia delle sezioni della lezione */
+        .lesson-content {
+            padding: 20px 30px;
+        }
+
+        .section-card {
+            background: #fdfdfd;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.06);
+            border-left-color: var(--primary-color);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-title .emoji {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* Liste e strutture interne */
+        ul {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #eef2f5;
+        }
+
+        li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .lang-it {
+            font-weight: 600;
+            color: #34495e;
+            display: block;
+        }
+
+        .lang-en {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            display: block;
+        }
+
+        /* Badge evidenziatori per la grammatica */
+        .badge-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .badge-container {
+                flex-direction: column;
+            }
+        }
+
+        .badge-box {
+            flex: 1;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .badge-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-box ul li {
+            border-bottom: none;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        /* Footer Motivazionale */
+        footer {
+            background: #f8fafc;
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .feedback {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .see-you {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Gruppo Scalea ☀️</h1>
+            <p>Riassunto della lezione / Lesson Summary</p>
+        </header>
+
+        <div class="welcome-msg">
+            Ciao Renata! Ciao Ian! 😊
+            <span class="translation-sub">Ecco un riassunto della nostra bellissima lezione offline di oggi / Here is a summary of our wonderful offline lesson today:</span>
+        </div>
+
+        <div class="lesson-content">
+            
+            <div class="section-card">
+                <div class="section-title">
+                    <span class="emoji">🌊</span>
+                    <h3>Il nostro incontro / Our meeting</h3>
+                </div>
+                <span class="lang-it">Ci siamo visti al Lido Nettuno di Scalea.</span>
+                <span class="lang-en">We met at Lido Nettuno in Scalea.</span>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">
+                    <span class="emoji">👵🤝</span>
+                    <h3>Presentazioni / Introductions</h3>
+                </div>
+                <span class="lang-it">Abbiamo fatto le presentazioni con Giovanna, mia madre!</span>
+                <span class="lang-en">We introduced ourselves to Giovanna, my mother!</span>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">
+                    <span class="emoji">💡</span>
+                    <h3>Nuova espressione / New expression</h3>
+                </div>
+                <span class="lang-it" style="font-size: 1.1rem; color: var(--primary-color);">"Da + ruolo/condizione"</span>
+                <span class="lang-en">To indicate a specific time, role, or condition both in the past and in the present.</span>
+
+                <div class="badge-container">
+                    <div class="badge-box">
+                        <h4>🕒 Nel passato / In the past</h4>
+                        <ul>
+                            <li><span class="lang-it">da bambina / bambino</span> <span class="lang-en">= when I was a child 🧒</span></li>
+                            <li><span class="lang-it">da giovane</span> <span class="lang-en">= when I was young 🧑</span></li>
+                            <li><span class="lang-it">da studentessa</span> <span class="lang-en">= when I was a student (in the past) 📚</span></li>
+                        </ul>
+                    </div>
+                    <div class="badge-box">
+                        <h4>🎯 Nel presente / In the present</h4>
+                        <ul>
+                            <li><span class="lang-it">da studentessa / studente</span> <span class="lang-en">= as a student (now, from a student's point of view) 📝</span></li>
+                            <li><span class="lang-it">da turista</span> <span class="lang-en">= as a tourist / traveling as a tourist 🗺️</span></li>
+                            <li><span class="lang-it">da amico / amica</span> <span class="lang-en">= as a friend *(e.g., "Ti parlo da amico")* 🤝</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">
+                    <span class="emoji">📚</span>
+                    <h3>Lessico nuovo / New vocabulary</h3>
+                </div>
+                <ul>
+                    <li>
+                        <span class="lang-it">Dare / Passare ✋</span>
+                        <span class="lang-en">to give / to pass</span>
+                    </li>
+                    <li>
+                        <span class="lang-it">Regalare 🎁</span>
+                        <span class="lang-en">to give a present/gift (per un compleanno o un'occasione)</span>
+                    </li>
+                    <li>
+                        <span class="lang-it">Prestare 🤝</span>
+                        <span class="lang-en">to lend (qualcosa che poi ritorna indietro / something you will get back)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">
+                    <span class="emoji">🚗</span>
+                    <h3>Lettura e Ascolto / Reading and Listening</h3>
+                </div>
+                <span class="lang-it">Abbiamo ascoltato e letto insieme il testo "La Macchina".</span>
+                <span class="lang-en">We listened to and read the text "La Macchina" together (the story of Dr. Donelli and his beloved car!).</span>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="feedback">Bravissimi! Siete andati molto bene oggi. 🌟</div>
+            <div class="feedback" style="font-size: 1.1rem; color: var(--text-muted); font-weight: normal; margin-bottom: 20px;">Great job! You both did really well today.</div>
+            <div class="see-you">Ci vediamo alla prossima lezione! 👋✨</div>
+            <div class="see-you" style="font-size: 1rem; color: var(--text-muted); font-weight: normal; margin-top: 5px;">See you at the next lesson!</div>
+        </footer>
+    </div>
+
+</body>
+</html>
