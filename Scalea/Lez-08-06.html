@@ -409,54 +409,61 @@
                         </div>
                     </div>
                   
-
-                     <!-- Esercizio 2 (Ottimizzato per il LAD) -->
-                    <div style="background: #f0fdfa; padding: 15px; border-radius: 10px; border: 1px solid #57c5b6;">
-                        <span class="lang-it" style="color: var(--primary-color);">2. La mappa del verbo DARE 🗺️✋</span>
-                        <span class="lang-en">Learn the difference: "Dare" is the general verb. Passare, regalare, and prestare are specific types of giving!</span>
+                    <!-- Esercizio 2 (Ottimizzato con spiegazione in L1) -->
+                    <div style="background: #f0fdf4; padding: 15px; border-radius: 10px; border: 1px solid #57c5b6;">
+                        <span class="lang-it" style="color: var(--primary-color);">2. Il verbo DARE e le sue sfumature 🗺️✋</span>
+                        <span class="lang-en" style="margin-top: 5px; font-weight: bold; color: #1a5f7a;">
+                            💡 How it works in Italian (L1 Explanation):
+                        </span>
                         
-                        <!-- Schema visivo semplificato -->
-                        <div style="background: white; padding: 12px; border-radius: 8px; margin: 10px 0; font-size: 0.95rem; line-height: 1.5; border-left: 4px solid var(--secondary-color);">
-                            🤝 <strong>DARE</strong> = Il verbo generale (General verb)<br>
-                            &nbsp;&nbsp;├─➡️ <strong>Passare</strong> = dare a tavola o di mano in mano 🧂<br>
-                            &nbsp;&nbsp;├─🎁 <strong>Regalare</strong> = dare per sempre (compleanno!) 🎉<br>
-                            &nbsp;&nbsp;└─⏱️ <strong>Prestare</strong> = dare per poco tempo (la cosa ritorna a te) 🖋️
+                        <!-- Spiegazione in L1 per attivare il LAD -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; margin: 10px 0; font-size: 0.95rem; line-height: 1.6; border-left: 4px solid var(--secondary-color); color: #2c3e50;">
+                            🧠 <strong>DARE</strong> is the general verb (like "to give"). You can use it in almost any situation. <br>
+                            However, Italian has <em>specific sub-categories</em> that sound much more natural in context:<br>
+                            &nbsp;&nbsp;├─➡️ <strong>Passare</strong> = to give/hand over something at the table 🧂<br>
+                            &nbsp;&nbsp;├─🎁 <strong>Regalare</strong> = to give a present for keeps (e.g., birthdays) 🎉<br>
+                            &nbsp;&nbsp;└─⏱️ <strong>Prestare</strong> = to lend something (it will come back to you) 🖋️
                         </div>
 
-                        <span class="lang-en" style="margin-top: 15px; display:block;"><strong>Task:</strong> Complete the sentences. You can use the specific verb (passi / regali / presti) OR the general verb (dai).</span>
+                        <span class="lang-en" style="margin-top: 15px; display:block; font-style: italic;">
+                            <strong>Task:</strong> Choose the best option. You can use the specific verb (passi / regali / presti) OR the general verb (dai). Which one is more natural?
+                        </span>
                         
                         <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 15px;">
                             <div>
-                                <label style="display: block; margin-bottom: 5px;">1. A tavola: <em>"Ian, per favore, mi ________ il sale?"</em> 🧂</label>
-                                <select id="verb-1" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem;">
-                                    <option value="">-- Scegli la risposta migliore --</option>
-                                    <option value="passi (specifico) o dai (generale)">passi (specifico) oppure dai (generale)</option>
-                                    <option value="regali">regali</option>
-                                    <option value="presti">presti</option>
+                                <label style="display: block; margin-bottom: 5px; font-weight: 600;">1. At the table: <em>"Ian, per favore, mi ________ il sale?"</em> 🧂</label>
+                                <select id="verb-1" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; font-family: inherit;">
+                                    <option value="">-- Choose the best answer --</option>
+                                    <option value="passi (best/specific) or dai (general)">passi (specific / natural) or dai (general / okay)</option>
+                                    <option value="regali">regali (as a permanent gift)</option>
+                                    <option value="presti">presti (to lend temporarily)</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label style="display: block; margin-bottom: 5px;">2. Oggi è il compleanno di un amico: tu gli ________ un libro. 🎁</label>
-                                <select id="verb-2" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem;">
-                                    <option value="">-- Scegli la risposta migliore --</option>
-                                    <option value="passi">passi</option>
-                                    <option value="regali (specifico) o dai (generale)">regali (specifico) oppure dai (generale)</option>
-                                    <option value="presti">presti</option>
+                                <label style="display: block; margin-bottom: 5px; font-weight: 600;">2. It's a friend's birthday: tu gli ________ un libro. 🎁</label>
+                                <select id="verb-2" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; font-family: inherit;">
+                                    <option value="">-- Choose the best answer --</option>
+                                    <option value="passi">passi (to hand over at the table)</option>
+                                    <option value="regali (best/specific) or dai (general)">regali (specific / natural) or dai (general / okay)</option>
+                                    <option value="presti">presti (to lend temporarily)</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label style="display: block; margin-bottom: 5px;">3. Renata non ha la penna: tu le ________ la tua penna per 5 minuti. 🖋️</label>
-                                <select id="verb-3" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem;">
-                                    <option value="">-- Scegli la risposta migliore --</option>
-                                    <option value="passi">passi</option>
-                                    <option value="regali">regali</option>
-                                    <option value="presti (specifico) o dai (generale)">presti (specifico) oppure dai (generale)</option>
+                                <label style="display: block; margin-bottom: 5px; font-weight: 600;">3. Renata doesn't have a pen: tu le ________ la tua penna per 5 minuti. 🖋️</label>
+                                <select id="verb-3" style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; font-family: inherit;">
+                                    <option value="">-- Choose the best answer --</option>
+                                    <option value="passi">passi (to hand over at the table)</option>
+                                    <option value="regali">regali (as a permanent gift)</option>
+                                    <option value="presti (best/specific) or dai (general)">presti (specific / natural) or dai (general / okay)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
+
+ 
+     
              
 
                     
