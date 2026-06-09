@@ -365,6 +365,23 @@
 
                 <!-- Form Esercizi Scritti -->
                 <div id="homework-form" style="display: flex; flex-direction: column; gap: 20px;">
+
+                    <div style="background: #fdfaf2; padding: 15px; border-radius: 10px; border: 1px solid #f39c12;">
+                        <span class="lang-it" style="color: var(--accent-color);">1B. Scrivi le tue azioni a Scalea ✍️</span>
+                        <span class="lang-en">Write 3 actions you do as a tourist and 3 actions you do as an inhabitant.</span>
+                        
+                        <div style="margin-top: 10px;">
+                            <label style="font-weight: 600; display: block; margin-bottom: 5px; color: #16a34a;">🧳 Da turista faccio... (3 cose):</label>
+                            <textarea id="actions-tourist" rows="2" placeholder="1. ... 2. ... 3. ..." style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; margin-bottom: 12px;"></textarea>
+                            
+                            <label style="font-weight: 600; display: block; margin-bottom: 5px; color: #2563eb;">🏠 Da abitante faccio... (3 cose):</label>
+                            <textarea id="actions-inhabitant" rows="2" placeholder="1. ... 2. ... 3. ..." style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit;"></textarea>
+                        </div>
+                    </div>
+
+
+               
+
                     
                     <!-- Campo Nome -->
                     <div>
@@ -439,6 +456,11 @@
             const codiceGruppo = "INSERISCI_QUI_IL_CODICE_DEL_GRUPPO"; 
             
             const nome = document.getElementById('student-name').value || "Studente";
+
+            const azioniTuristaScritte = document.getElementById('actions-tourist').value || "Nessuna risposta";
+            const azioniAbitanteScritte = document.getElementById('actions-inhabitant').value || "Nessuna risposta";
+
+
             const v1 = document.getElementById('verb-1').value || "______";
             const v2 = document.getElementById('verb-2').value || "______";
             const v3 = document.getElementById('verb-3').value || "______";
@@ -450,6 +472,11 @@
             messaggio += `🎮 *1. Gioco Scalea:*\n`;
             messaggio += `🧳 _Da turista:_ ${risposteTurista.join(', ') || 'Nessuna selezione'}\n`;
             messaggio += `🏠 _Da abitante:_ ${risposteAbitante.join(', ') || 'Nessuna selezione'}\n\n`;
+
+            messaggio += `✍️ *1B. Le mie azioni a Scalea:*\n`;
+            messaggio += `🧳 _Da turista:_ "${azioniTuristaScritte}"\n`;
+            messaggio += `🏠 _Da abitante:_ "${azioniAbitanteScritte}"\n\n`;
+
             
             messaggio += `🧂 *2. Esercizio Verbi:*\n`;
             messaggio += `1. ...mi *${v1}* il sale?\n`;
