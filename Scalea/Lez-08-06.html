@@ -169,7 +169,7 @@
                 flex-direction: column;
             }
             .game-columns {
-                flex-direction: column; /* Incolonna il gioco sui telefoni */
+                flex-direction: column; /* Incolonna il gioco in verticale sui telefoni */
             }
         }
 
@@ -233,6 +233,7 @@
 
         <div class="lesson-content">
             
+            <!-- SEZIONE INCONTRO -->
             <div class="section-card">
                 <div class="section-title">
                     <span class="emoji">🌊</span>
@@ -243,6 +244,7 @@
                 <img src="img/lidonettuno.jpg" alt="Lido Nettuno di Scalea" class="lesson-img">
             </div>
 
+            <!-- SEZIONE PRESENTAZIONI -->
             <div class="section-card">
                 <div class="section-title">
                     <span class="emoji">👵🤝</span>
@@ -253,6 +255,7 @@
                 <img src="img/mamma.jpg" alt="Giovanna, mia madre" class="lesson-img">
             </div>
 
+            <!-- SEZIONE NUOVA ESPRESSIONE -->
             <div class="section-card">
                 <div class="section-title">
                     <span class="emoji">💡</span>
@@ -281,6 +284,7 @@
                 </div>
             </div>
 
+            <!-- SEZIONE LESSICO -->
             <div class="section-card">
                 <div class="section-title">
                     <span class="emoji">📚</span>
@@ -302,6 +306,7 @@
                 </ul>
             </div>
 
+            <!-- SEZIONE LETTURA -->
             <div class="section-card">
                 <div class="section-title">
                     <span class="emoji">🚗</span>
@@ -356,32 +361,45 @@
                     </div>
                 </div>
 
-                <hr style="border: none; border-top: 1px dashed #cbd5e1; margin-bottom: 20px;">
+                <hr style="border: none; border-top: 1px dashed #cbd5e1; margin-bottom: 25px;">
 
-                <!-- Altri esercizi tradizionali scritti corti -->
-                <ul style="padding-left: 5px;">
-                    <li style="margin-bottom: 20px; border-bottom: 1px dashed #eef2f5; padding-bottom: 15px;">
+                <!-- Form Esercizi Scritti -->
+                <div id="homework-form" style="display: flex; flex-direction: column; gap: 20px;">
+                    
+                    <!-- Campo Nome -->
+                    <div>
+                        <label style="font-weight: bold; display: block; margin-bottom: 5px; color: var(--primary-color);">Il tuo nome / Your name:</label>
+                        <input type="text" id="student-name" placeholder="Inserisci il tuo nome" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem;">
+                    </div>
+
+                    <!-- Esercizio 2 -->
+                    <div>
                         <span class="lang-it">2. A tavola e con gli amici (I verbi) 🧂</span>
                         <span class="lang-en">Complete the sentences in the present tense with: <strong>passi</strong>, <strong>regali</strong>, <strong>presti</strong>.</span>
-                        <span class="translation-sub" style="font-weight: normal; margin-top: 8px; display: block; line-height: 1.8;">
-                            1. A tavola: "Ian, per favore, mi ________ il sale?" 🧂<br>
-                            2. Oggi è il compleanno di un amico: tu ________ un libro. 🎁<br>
-                            3. Renata non ha la penna: tu ________ la tua penna per 5 minuti. 🖋️
-                        </span>
-                    </li>
+                        <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px;">
+                            <label>1. A tavola: "Ian, per favore, mi <input type="text" id="verb-1" style="width: 100px; padding: 4px; border: 1px solid #cbd5e1; border-radius: 4px; text-align: center;"> il sale?" 🧂</label>
+                            <label>2. Oggi è il compleanno di un amico: tu <input type="text" id="verb-2" style="width: 100px; padding: 4px; border: 1px solid #cbd5e1; border-radius: 4px; text-align: center;"> un libro. 🎁</label>
+                            <label>3. Renata non ha la penna: tu <input type="text" id="verb-3" style="width: 100px; padding: 4px; border: 1px solid #cbd5e1; border-radius: 4px; text-align: center;"> la tua penna per 5 minuti. 🖋️</label>
+                        </div>
+                    </div>
                     
-                    <li style="margin-bottom: 10px;">
+                    <!-- Esercizio 3 -->
+                    <div>
                         <span class="lang-it">3. La mia macchina 🚗</span>
                         <span class="lang-en">Describe your car (or your dream car). Use the verb "essere" in the present tense and 3 simple adjectives.[span_1](start_span)[span_1](end_span)</span>
-                        <span class="translation-sub" style="color: var(--primary-color); font-weight: normal; margin-top: 5px;">
-                            Es: "La mia macchina <strong>è</strong> piccola, rossa e nuova." ✨
-                        </span>
-                    </li>
-                </ul>
+                        <textarea id="car-desc" rows="2" placeholder="Es: La mia macchina è piccola, rossa e nuova..." style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 1rem; margin-top: 8px;"></textarea>
+                    </div>
+
+                    <!-- PULSANTE WHATSAPP -->
+                    <button onclick="inviaSuWhatsApp()" style="background-color: #25D366; color: white; border: none; padding: 12px 20px; font-size: 1.1rem; font-weight: bold; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 10px; transition: background 0.2s;">
+                        <span>💬</span> Invia i compiti sul Gruppo WhatsApp / Send to WhatsApp Group
+                    </button>
+                </div>
             </div>
 
         </div> <!-- FINE LESSON CONTENT -->
 
+        <!-- FOOTER -->
         <footer>
             <div class="feedback">Bravissimi! Siete andati molto bene oggi. 🌟</div>
             <div class="feedback" style="font-size: 1.1rem; color: var(--text-muted); font-weight: normal; margin-bottom: 20px;">Great job! You both did really well today.</div>
@@ -390,18 +408,24 @@
         </footer>
     </div>
 
-    <!-- LOGICA JAVASCRIPT DEL GIOCO -->
+    <!-- LOGICA JAVASCRIPT -->
     <script>
+        // Array globali per salvare i risultati del gioco interattivo
+        let risposteTurista = [];
+        let risposteAbitante = [];
+
         function checkChoice(element, correctCategory) {
             const text = element.innerText;
             
             if (correctCategory === 'turista') {
+                risposteTurista.push(text);
                 const list = document.getElementById('list-turista');
                 const li = document.createElement('li');
                 li.style.cssText = "background: white; padding: 8px; margin-bottom: 5px; border-radius: 5px; font-size: 0.9rem; font-weight: 600; color: #16a34a; box-shadow: 0 2px 4px rgba(0,0,0,0.03);";
                 li.innerText = text;
                 list.appendChild(li);
             } else {
+                risposteAbitante.push(text);
                 const list = document.getElementById('list-abitante');
                 const li = document.createElement('li');
                 li.style.cssText = "background: white; padding: 8px; margin-bottom: 5px; border-radius: 5px; font-size: 0.9rem; font-weight: 600; color: #2563eb; box-shadow: 0 2px 4px rgba(0,0,0,0.03);";
@@ -410,6 +434,37 @@
             }
             
             element.style.display = 'none';
+        }
+
+        function inviaSuWhatsApp() {
+            // ⚠️ SOSTITUISCI QUESTA STRINGA FITTIZIA CON LA PARTE FINALE DEL LINK DI INVITO DEL GRUPPO REALE
+            const codiceGruppo = "INSERISCI_QUI_IL_CODICE_DEL_GRUPPO"; 
+            
+            const nome = document.getElementById('student-name').value || "Studente";
+            const v1 = document.getElementById('verb-1').value || "______";
+            const v2 = document.getElementById('verb-2').value || "______";
+            const v3 = document.getElementById('verb-3').value || "______";
+            const descrizioneMacchina = document.getElementById('car-desc').value || "Nessuna descrizione";
+
+            // Creazione del template per il testo del messaggio WhatsApp
+            let messaggio = `📝 *COMPITI DI ITALIANO* 🇮🇹\n`;
+            messaggio += `Student: *${nome}*\n\n`;
+            
+            messaggio += `🎮 *1. Gioco Scalea:*\n`;
+            messaggio += `🧳 _Da turista:_ ${risposteTurista.join(', ') || 'Nessuna selezione'}\n`;
+            messaggio += `🏠 _Da abitante:_ ${risposteAbitante.join(', ') || 'Nessuna selezione'}\n\n`;
+            
+            messaggio += `🧂 *2. Esercizio Verbi:*\n`;
+            messaggio += `1. ...mi *${v1}* il sale?\n`;
+            messaggio += `2. ...tu *${v2}* un libro.\n`;
+            messaggio += `3. ...tu *${v3}* la tua penna.\n\n`;
+            
+            messaggio += `🚗 *3. Descrizione Macchina:*\n`;
+            messaggio += `"${descrizioneMacchina}"`;
+
+            // Generazione dell'URL per reindirizzare al gruppo
+            const urlWhatsApp = `https://chat.whatsapp.com/${codiceGruppo}?text=${encodeURIComponent(messaggio)}`;
+            window.open(urlWhatsApp, '_blank');
         }
     </script>
 
