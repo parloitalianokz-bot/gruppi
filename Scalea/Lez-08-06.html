@@ -313,7 +313,7 @@
                     <h3>Lettura e Ascolto / Reading and Listening</h3>
                 </div>
                 <span class="lang-it">Abbiamo ascoltato e letto insieme il testo "La Macchina".</span>
-                <span class="lang-en">We listened to and read the text "La Macchina" together (the story of Dr. Donelli and his beloved car!).[span_0](start_span)[span_0](end_span)</span>
+                <span class="lang-en">We listened to and read the text "La Macchina" together (the story of Dr. Donelli and his beloved car!).</span>
                 <img src="img/macchina.jpg" alt="La Macchina" class="lesson-img">
             </div>
 
@@ -386,7 +386,7 @@
                     <!-- Esercizio 3 -->
                     <div>
                         <span class="lang-it">3. La mia macchina 🚗</span>
-                        <span class="lang-en">Describe your car (or your dream car). Use the verb "essere" in the present tense and 3 simple adjectives.[span_1](start_span)[span_1](end_span)</span>
+                        <span class="lang-en">Describe your car (or your dream car). Use the verb "essere" in the present tense and 3 simple adjectives.</span>
                         <textarea id="car-desc" rows="2" placeholder="Es: La mia macchina è piccola, rossa e nuova..." style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 1rem; margin-top: 8px;"></textarea>
                     </div>
 
@@ -410,7 +410,6 @@
 
     <!-- LOGICA JAVASCRIPT -->
     <script>
-        // Array globali per salvare i risultati del gioco interattivo
         let risposteTurista = [];
         let risposteAbitante = [];
 
@@ -437,7 +436,6 @@
         }
 
         function inviaSuWhatsApp() {
-            // ⚠️ SOSTITUISCI QUESTA STRINGA FITTIZIA CON LA PARTE FINALE DEL LINK DI INVITO DEL GRUPPO REALE
             const codiceGruppo = "INSERISCI_QUI_IL_CODICE_DEL_GRUPPO"; 
             
             const nome = document.getElementById('student-name').value || "Studente";
@@ -446,7 +444,6 @@
             const v3 = document.getElementById('verb-3').value || "______";
             const descrizioneMacchina = document.getElementById('car-desc').value || "Nessuna descrizione";
 
-            // Creazione del template per il testo del messaggio WhatsApp
             let messaggio = `📝 *COMPITI DI ITALIANO* 🇮🇹\n`;
             messaggio += `Student: *${nome}*\n\n`;
             
@@ -462,7 +459,6 @@
             messaggio += `🚗 *3. Descrizione Macchina:*\n`;
             messaggio += `"${descrizioneMacchina}"`;
 
-            // Generazione dell'URL per reindirizzare al gruppo
             const urlWhatsApp = `https://chat.whatsapp.com/${codiceGruppo}?text=${encodeURIComponent(messaggio)}`;
             window.open(urlWhatsApp, '_blank');
         }
