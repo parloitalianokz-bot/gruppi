@@ -217,11 +217,65 @@
             margin-bottom: 50px;
         }
 
+        #status-message {
+            margin-top: 15px;
+            font-weight: bold;
+            display: none;
+        }
+
         .bg-pronome { background-color: #ec4899; color: white; }
         .bg-verbo { background-color: #3b82f6; color: white; }
         .bg-prep { background-color: #10b981; color: white; }
         .bg-luogo { background-color: #8b5cf6; color: white; }
     </style>
+
+    <!-- Integrazione Firebase SDK (v9 compatibile via cdn) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+        // TODO: Inserisci qui le credenziali del tuo database Firebase della scuola Parlo Italiano
+        const firebaseConfig = {
+            apiKey: "LA_TUA_API_KEY",
+            authDomain: "IL_TUO_AUTH_DOMAIN",
+            databaseURL: "IL_TUO_DATABASE_URL",
+            projectId: "IL_TUO_PROJECT_ID",
+            storageBucket: "IL_TUO_STORAGE_BUCKET",
+            messagingSenderId: "IL_TUO_MESSAGING_SENDER_ID",
+            appId: "IL_TUO_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Rendiamo la funzione accessibile globalmente per il bottone HTML
+        window.submitToFirebase = function(studentName, ex1Data, ex2Data) {
+            const status = document.getElementById('status-message');
+            status.style.display = "block";
+            status.style.color = "orange";
+            status.innerText = "Salvataggio nel database in corso...";
+
+            const compitiRef = ref(database, 'compiti_scalea');
+            const nuovoCompitoRef = push(compitiRef);
+
+            set(nuovoCompitoRef, {
+                studente: studentName,
+                esercizio1: ex1Data,
+                esercizio2: ex2Data,
+                datainvio: new Date().toISOString()
+            })
+            .then(() => {
+                status.style.color = "green";
+                status.innerText = "✅ Compito salvato nel database! Il professore verificherà le tue risposte.";
+                alert("Ottimo lavoro! Il tuo compito è stato registrato online.");
+            })
+            .catch((error) => {
+                console.error(error);
+                status.style.color = "red";
+                status.innerText = "❌ Errore di salvataggio. Riprova.";
+            });
+        }
+    </script>
 </head>
 <body>
 
@@ -392,8 +446,9 @@
 
     <div class="actions">
         <button class="btn" onclick="checkHomework()">Verifica Esercizi / Check ✅</button>
-        <button class="btn btn-secondary" onclick="sendEmail()">Invia al Professore 📑</button>
+        <button class="btn btn-secondary" onclick="processAndSubmit()">Invia al Professore Antonio 📑</button>
     </div>
+    <div id="status-message"></div>
 </div>
 
 <script>
@@ -444,31 +499,29 @@
         alert("Controllo completato! Guarda le correzioni dell'Esercizio 2 sulla pagina.");
     }
 
-    function sendEmail() {
+    function processAndSubmit() {
         let name = document.getElementById('student-name').value.trim();
         if (!name) {
             alert("Per favore, inserisci il tuo nome! / Please, enter your name!");
             return;
         }
 
-        let email = "parloitaliano.kz@gmail.com";
-        let subject = "Compito d'Italiano (Andare) - " + name;
-        
-        let bodyText = `COMPITO A CASA - SCALEA\n`;
-        bodyText += `Studente: ${name}\n\n`;
-        bodyText += `--- ESERCIZIO 1 ---\n`;
+        // Strutturiamo i dati dell'esercizio 1
+        let ex1Data = {};
         for(let i = 1; i <= 10; i++) {
-            bodyText += `Frase ${i}: ${selectedTokens[i].join(' ')}\n`;
-        }
-        bodyText += `\n--- ESERCIZIO 2 ---\n`;
-        for(let i = 1; i <= 6; i++) {
-            let p = document.getElementById('ex2-p' + i).value;
-            let v = document.getElementById('ex2-v' + i).value;
-            bodyText += `2.${i}: Preposizione: [${p}] | Verbo: [${v}]\n`;
+            ex1Data['frase_' + i] = selectedTokens[i].join(' ');
         }
 
-        let mailtoUrl = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyText);
-        window.location.href = mailtoUrl;
+        // Strutturiamo i dati dell'esercizio 2
+        let ex2Data = {};
+        for(let i = 1; i <= 6; i++) {
+            let p = document.getElementById('ex2-p' + i).value.trim();
+            let v = document.getElementById('ex2-v' + i).value.trim();
+            ex2Data['risposta_2_' + i] = `Prep: ${p} | Verbo: ${v}`;
+        }
+
+        // Chiamiamo la funzione di Firebase inclusa nel tag script module in alto
+        window.submitToFirebase(name, ex1Data, ex2Data);
     }
 </script>
 </body>
