@@ -106,7 +106,6 @@
             font-size: 10pt;
         }
 
-        /* Esercizio 1: Cards */
         .card-builder {
             background: #f8fafc;
             padding: 15px;
@@ -150,11 +149,6 @@
             opacity: 0.6;
         }
 
-        .distractor {
-            border: 1px dashed #ef4444 !important;
-        }
-
-        /* Esercizio 2: Form Inputs */
         .sentence-row {
             margin-bottom: 20px;
             font-size: 12pt;
@@ -190,7 +184,6 @@
             color: var(--error);
         }
 
-        /* Buttons */
         .btn {
             background-color: var(--primary);
             color: white;
@@ -224,24 +217,11 @@
             margin-bottom: 50px;
         }
 
-        /* Report Box */
-        #report-box {
-            background: #f1f5f9;
-            border: 2px solid #cbd5e1;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 25px;
+        #status-message {
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--secondary);
             display: none;
-        }
-
-        #report-text {
-            width: 100%;
-            height: 250px;
-            font-family: monospace;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #94a3b8;
-            margin-bottom: 10px;
         }
 
         .bg-pronome { background-color: #ec4899; color: white; }
@@ -253,6 +233,14 @@
 <body>
 
 <div class="container">
+    <!-- Questo form invisibile raccoglie i dati reali per FormBold -->
+    <form id="hidden-form" action="https://formbold.com/s/3G7wA" method="POST" style="display:none;">
+        <input type="text" name="Email_Professore" value="parloitaliano.kz@gmail.com">
+        <input type="text" name="Studente" id="form-student">
+        <input type="text" name="Risultati_Esercizio_1" id="form-ex1">
+        <input type="text" name="Risultati_Esercizio_2" id="form-ex2">
+    </form>
+
     <header>
         <h1>Esercizi d'Italiano: Il Verbo Andare 🏖️</h1>
         <p>Compito a casa per Ian e Renata - Lido Nettuno, Scalea</p>
@@ -267,116 +255,107 @@
     <div class="card" id="ex1">
         <h2>Esercizio 1: Ricostruisci le frasi di Scalea 🧩</h2>
         <div class="instruction">
-            Clicca sulle parole nell'ordine corretto per formare la frase logica. Attenzione! Ci sono alcuni <strong>distrattori (parole extra sbagliate)</strong> che non devi usare!
-            <em>Click on the words in the correct order to build a logical sentence. Watch out! There are some <strong>distractors (extra wrong words)</strong> that you should not use!</em>
+            Clicca sulle parole nell'ordine corretto per formare la frase logica. Attenzione ai distrattori!
+            <em>Click on the words in the correct order to build a logical sentence. Watch out for distractors!</em>
         </div>
         
-        <!-- Frase 1 -->
-        <p><strong>1.</strong> <em>Dove vanno i ragazzi quando vogliono una pizza? (Where do they go for pizza?)</em></p>
+        <!-- Le 10 frasi con i relativi token pool e distrattori -->
+        <p><strong>1.</strong> <em>Dove vanno i ragazzi quando vogliono una pizza?</em></p>
         <div class="card-builder" id="builder-1"></div>
         <div class="token-pool" id="pool-1">
             <span class="token bg-luogo" onclick="addToken(1, this, 'Pizzeria Corsaro')">Pizzeria Corsaro</span>
-            <span class="token bg-prep" onclick="addToken(1, this, 'in')">in</span> <!-- Distrattore -->
+            <span class="token bg-prep" onclick="addToken(1, this, 'in')">in</span>
             <span class="token bg-verbo" onclick="addToken(1, this, 'vanno')">vanno</span>
             <span class="token bg-pronome" onclick="addToken(1, this, 'Loro')">Loro</span>
             <span class="token bg-prep" onclick="addToken(1, this, 'alla')">alla</span>
         </div>
 
-        <!-- Frase 2 -->
-        <p><strong>2.</strong> <em>Tu e Irina andate in stazione? (Are you and Irina going to the station?)</em></p>
+        <p><strong>2.</strong> <em>Tu e Irina andate in stazione?</em></p>
         <div class="card-builder" id="builder-2"></div>
         <div class="token-pool" id="pool-2">
             <span class="token bg-prep" onclick="addToken(2, this, 'in')">in</span>
-            <span class="token bg-prep" onclick="addToken(2, this, 'alla')">alla</span> <!-- Distrattore -->
+            <span class="token bg-prep" onclick="addToken(2, this, 'alla')">alla</span>
             <span class="token bg-pronome" onclick="addToken(2, this, 'Noi')">Noi</span>
             <span class="token bg-verbo" onclick="addToken(2, this, 'andiamo')">andiamo</span>
             <span class="token bg-luogo" onclick="addToken(2, this, 'stazione')">stazione</span>
         </div>
 
-        <!-- Frase 3 -->
-        <p><strong>3.</strong> <em>Stasera vai a casa di Irina? (Are you going to Irina's place tonight?)</em></p>
+        <p><strong>3.</strong> <em>Stasera vai a casa di Irina?</em></p>
         <div class="card-builder" id="builder-3"></div>
         <div class="token-pool" id="pool-3">
             <span class="token bg-pronome" onclick="addToken(3, this, 'Io')">Io</span>
             <span class="token bg-verbo" onclick="addToken(3, this, 'vado')">vado</span>
             <span class="token bg-prep" onclick="addToken(3, this, 'da')">da</span>
-            <span class="token bg-prep" onclick="addToken(3, this, 'a')">a</span> <!-- Distrattore -->
+            <span class="token bg-prep" onclick="addToken(3, this, 'a')">a</span>
             <span class="token bg-luogo" onclick="addToken(3, this, 'Irina')">Irina</span>
         </div>
 
-        <!-- Frase 4 -->
-        <p><strong>4.</strong> <em>Dove va Renata con questo caldo? (Where is Renata going in this heat?)</em></p>
+        <p><strong>4.</strong> <em>Dove va Renata con questo caldo?</em></p>
         <div class="card-builder" id="builder-4"></div>
         <div class="token-pool" id="pool-4">
-            <span class="token bg-verbo" onclick="addToken(4, this, 'vado')">vado</span> <!-- Distrattore -->
+            <span class="token bg-verbo" onclick="addToken(4, this, 'vado')">vado</span>
             <span class="token bg-pronome" onclick="addToken(4, this, 'Lei')">Lei</span>
             <span class="token bg-verbo" onclick="addToken(4, this, 'va')">va</span>
             <span class="token bg-prep" onclick="addToken(4, this, 'al')">al</span>
             <span class="token bg-luogo" onclick="addToken(4, this, 'mare')">mare</span>
         </div>
 
-        <!-- Frase 5 -->
-        <p><strong>5.</strong> <em>Cosa fate tu e Ian? (What are you and Ian doing?)</em></p>
+        <p><strong>5.</strong> <em>Cosa fate tu e Ian?</em></p>
         <div class="card-builder" id="builder-5"></div>
         <div class="token-pool" id="pool-5">
             <span class="token bg-pronome" onclick="addToken(5, this, 'Noi')">Noi</span>
-            <span class="token bg-verbo" onclick="addToken(5, this, 'andate')">andate</span> <!-- Distrattore -->
+            <span class="token bg-verbo" onclick="addToken(5, this, 'andate')">andate</span>
             <span class="token bg-verbo" onclick="addToken(5, this, 'andiamo')">andiamo</span>
             <span class="token bg-prep" onclick="addToken(5, this, 'al')">al</span>
             <span class="token bg-luogo" onclick="addToken(5, this, 'Ristorante')">Ristorante</span>
         </div>
 
-        <!-- Frase 6 -->
-        <p><strong>6.</strong> <em>Dove va il professore? (Where is the professor going?)</em></p>
+        <p><strong>6.</strong> <em>Dove va il professore?</em></p>
         <div class="card-builder" id="builder-6"></div>
         <div class="token-pool" id="pool-6">
             <span class="token bg-pronome" onclick="addToken(6, this, 'Lui')">Lui</span>
             <span class="token bg-verbo" onclick="addToken(6, this, 'va')">va</span>
-            <span class="token bg-prep" onclick="addToken(6, this, 'alla')">alla</span> <!-- Distrattore -->
+            <span class="token bg-prep" onclick="addToken(6, this, 'alla')">alla</span>
             <span class="token bg-prep" onclick="addToken(6, this, 'in')">in</span>
             <span class="token bg-luogo" onclick="addToken(6, this, 'banca')">banca</span>
         </div>
 
-        <!-- Frase 7 -->
-        <p><strong>7.</strong> <em>I turisti vogliono un gelato. (The tourists want an ice cream.)</em></p>
+        <p><strong>7.</strong> <em>I turisti vogliono un gelato.</em></p>
         <div class="card-builder" id="builder-7"></div>
         <div class="token-pool" id="pool-7">
             <span class="token bg-pronome" onclick="addToken(7, this, 'Loro')">Loro</span>
             <span class="token bg-verbo" onclick="addToken(7, this, 'vanno')">vanno</span>
-            <span class="token bg-prep" onclick="addToken(7, this, 'al')">al</span> <!-- Distrattore -->
+            <span class="token bg-prep" onclick="addToken(7, this, 'al')">al</span>
             <span class="token bg-prep" onclick="addToken(7, this, 'in')">in</span>
             <span class="token bg-luogo" onclick="addToken(7, this, 'gelateria')">gelateria</span>
         </div>
 
-        <!-- Frase 8 -->
-        <p><strong>8.</strong> <em>Ian, dove vai adesso? (Ian, where are you going now?)</em></p>
+        <p><strong>8.</strong> <em>Ian, dove vai adesso?</em></p>
         <div class="card-builder" id="builder-8"></div>
         <div class="token-pool" id="pool-8">
             <span class="token bg-pronome" onclick="addToken(8, this, 'Tu')">Tu</span>
             <span class="token bg-verbo" onclick="addToken(8, this, 'vai')">vai</span>
-            <span class="token bg-verbo" onclick="addToken(8, this, 'va')">va</span> <!-- Distrattore -->
+            <span class="token bg-verbo" onclick="addToken(8, this, 'va')">va</span>
             <span class="token bg-prep" onclick="addToken(8, this, 'al')">al</span>
             <span class="token bg-luogo" onclick="addToken(8, this, 'Lido Nettuno')">Lido Nettuno</span>
         </div>
 
-        <!-- Frase 9 -->
-        <p><strong>9.</strong> <em>Renata e Ian vanno dal professore? (Are Renata and Ian going to the professor's?)</em></p>
+        <p><strong>9.</strong> <em>Renata e Ian vanno dal professore?</em></p>
         <div class="card-builder" id="builder-9"></div>
         <div class="token-pool" id="pool-9">
             <span class="token bg-pronome" onclick="addToken(9, this, 'Loro')">Loro</span>
             <span class="token bg-verbo" onclick="addToken(9, this, 'vanno')">vanno</span>
-            <span class="token bg-prep" onclick="addToken(9, this, 'da')">da</span> <!-- Distrattore -->
+            <span class="token bg-prep" onclick="addToken(9, this, 'da')">da</span>
             <span class="token bg-prep" onclick="addToken(9, this, 'dal')">dal</span>
             <span class="token bg-luogo" onclick="addToken(9, this, 'professore')">professore</span>
         </div>
 
-        <!-- Frase 10 -->
-        <p><strong>10.</strong> <em>Voi andate a fare una passeggiata in centro? (Are you all going for a walk downtown?)</em></p>
+        <p><strong>10.</strong> <em>Voi andate a fare una passeggiata in centro?</em></p>
         <div class="card-builder" id="builder-10"></div>
         <div class="token-pool" id="pool-10">
             <span class="token bg-pronome" onclick="addToken(10, this, 'Voi')">Voi</span>
             <span class="token bg-verbo" onclick="addToken(10, this, 'andate')">andate</span>
-            <span class="token bg-prep" onclick="addToken(10, this, 'nel')">nel</span> <!-- Distrattore -->
+            <span class="token bg-prep" onclick="addToken(10, this, 'nel')">nel</span>
             <span class="token bg-prep" onclick="addToken(10, this, 'in')">in</span>
             <span class="token bg-luogo" onclick="addToken(10, this, 'centro')">centro</span>
         </div>
@@ -388,78 +367,46 @@
     <div class="card" id="ex2">
         <h2>Esercizio 2: Domande e Risposte a Scalea 💬</h2>
         <div class="instruction">
-            Completa le risposte inserendo la preposizione corretta (semplice o articolata) e la forma del verbo <strong>andare</strong>.
-            <em>Complete the sentences by inserting the correct preposition and the right form of the verb "andare".</em>
+            Completa le risposte inserendo la preposizione corretta e la forma del verbo <strong>andare</strong>.
         </div>
         
-        <div class="sentence-row" id="row2-1">
-            1. Domanda: "Ian, vai <strong>_______</strong> bar a prendere un caffè?" <input type="text" id="ex2-p1" placeholder="..."> <br>
-            Risposta: "Sì, io <input type="text" id="ex2-v1" placeholder="..."> adesso."
-            <span class="feedback" id="fb2-1"></span>
+        <div class="sentence-row">
+            1. "Ian, vai <strong>_______</strong> bar?" &rarr; "Sì, io <input type="text" id="ex2-p1" style="width:50px;"> <input type="text" id="ex2-v1"> adesso."
         </div>
-
-        <div class="sentence-row" id="row2-2">
-            2. Domanda: "Renata, vai <strong>_______</strong> banca a prelevare?" <input type="text" id="ex2-p2" placeholder="..."> <br>
-            Risposta: "No, io non <input type="text" id="ex2-v2" placeholder="..."> oggi, è chiuso."
-            <span class="feedback" id="fb2-2"></span>
+        <div class="sentence-row">
+            2. "Renata, vai <strong>_______</strong> banca?" &rarr; "No, io non <input type="text" id="ex2-p2" style="width:50px;"> <input type="text" id="ex2-v2"> oggi."
         </div>
-
-        <div class="sentence-row" id="row2-3">
-            3. Domanda: "Professore, va <strong>_______</strong> Irina stasera?" <input type="text" id="ex2-p3" placeholder="..."> <br>
-            Risposta: "Sì, io <input type="text" id="ex2-v3" placeholder="..."> da lei per cena."
-            <span class="feedback" id="fb2-3"></span>
+        <div class="sentence-row">
+            3. "Professore, va <strong>_______</strong> Irina?" &rarr; "Sì, io <input type="text" id="ex2-p3" style="width:50px;"> <input type="text" id="ex2-v3"> da lei per cena."
         </div>
-
-        <div class="sentence-row" id="row2-4">
-            4. Domanda: "Ian e Renata, andate <strong>_______</strong> stazione a prendere il treno?" <input type="text" id="ex2-p4" placeholder="..."> <br>
-            Risposta: "Sì, noi <input type="text" id="ex2-v4" placeholder="..."> in stazione adesso."
-            <span class="feedback" id="fb2-4"></span>
+        <div class="sentence-row">
+            4. "Ian e Renata, andate <strong>_______</strong> stazione?" &rarr; "Sì, noi <input type="text" id="ex2-p4" style="width:50px;"> <input type="text" id="ex2-v4"> adesso."
         </div>
-
-        <div class="sentence-row" id="row2-5">
-            5. Domanda: "Dove vanno i turisti stasera? Vanno <strong>_______</strong> Pizzeria Corsaro?" <input type="text" id="ex2-p5" placeholder="..."> <br>
-            Risposta: "Sì, loro <input type="text" id="ex2-v5" placeholder="..."> a mangiare la pizza."
-            <span class="feedback" id="fb2-5"></span>
+        <div class="sentence-row">
+            5. "Vanno <strong>_______</strong> Pizzeria Corsaro?" &rarr; "Sì, loro <input type="text" id="ex2-p5" style="width:50px;"> <input type="text" id="ex2-v5"> a mangiare la pizza."
         </div>
-
-        <div class="sentence-row" id="row2-6">
-            6. Domanda: "Renata, vai <strong>_______</strong> macelleria a comprare la carne?" <input type="text" id="ex2-p6" placeholder="..."> <br>
-            Risposta: "No, io <input type="text" id="ex2-v6" placeholder="..."> al supermercato."
-            <span class="feedback" id="fb2-6"></span>
+        <div class="sentence-row">
+            6. "Renata, vai <strong>_______</strong> macelleria?" &rarr; "No, io <input type="text" id="ex2-p6" style="width:50px;"> <input type="text" id="ex2-v6"> al supermercato."
         </div>
     </div>
 
-    <!-- AZIONI FINALI -->
     <div class="actions">
-        <button class="btn" onclick="checkHomework()">Verifica Esercizi / Check Homework ✅</button>
-        <button class="btn btn-secondary" onclick="generateReport()">Salva e Invia al Professore / Save and Send 📑</button>
-    </div>
-
-    <!-- SEZIONE REPORT PER IL PROFESSORE -->
-    <div id="report-box">
-        <h3>Report per il Professore 👨‍🏫</h3>
-        <p>Copia il testo qui sotto e invialo al prof via WhatsApp o email! / <em>Copy the text below and send it to your teacher via WhatsApp or email!</em></p>
-        <textarea id="report-text" readonly></textarea>
-        <button class="btn" onclick="copyReport()">Copia il testo / Copy text</button>
+        <button class="btn" onclick="submitHomework()">Invia al Professore 📑</button>
+        <div id="status-message"></div>
     </div>
 </div>
 
 <script>
-    let selectedTokens = {
-        1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: []
-    };
+    let selectedTokens = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [] };
 
     function addToken(step, element, value) {
         if (element.classList.contains('selected')) return;
         element.classList.add('selected');
-        
         let builder = document.getElementById('builder-' + step);
         let span = document.createElement('span');
         span.className = element.className + ' selected';
-        span.style.cursor = 'default';
         span.innerText = value;
         builder.appendChild(span);
-        
         selectedTokens[step].push(value);
     }
 
@@ -471,66 +418,53 @@
         document.querySelectorAll('.token').forEach(t => t.classList.remove('selected'));
     }
 
-    function checkHomework() {
-        // Ex 2 answers checking logic
-        let correctEx2 = {
-            1: {p: "al", v: "vado"},
-            2: {p: "in", v: "vado"},
-            3: {p: "da", v: "vado"},
-            4: {p: "in", v: "andiamo"},
-            5: {p: "alla", v: "vanno"},
-            6: {p: "in", v: "vado"}
-        };
-
-        for (let i = 1; i <= 6; i++) {
-            let pAns = document.getElementById('ex2-p' + i).value.trim().toLowerCase();
-            let vAns = document.getElementById('ex2-v' + i).value.trim().toLowerCase();
-            let fb = document.getElementById('fb2-' + i);
-
-            if (pAns === correctEx2[i].p && vAns === correctEx2[i].v) {
-                fb.className = "feedback correct";
-                fb.innerText = "⭐ OK!";
-            } else {
-                fb.className = "feedback incorrect";
-                fb.innerText = "❌ Controlla / Check";
-            }
-        }
-
-        alert("Controllo completato! Controlla i risultati dell'Esercizio 2 sulla pagina. / Checking completed! Look at Exercise 2 results on the page.");
-    }
-
-    function generateReport() {
+    function submitHomework() {
         let name = document.getElementById('student-name').value.trim();
         if (!name) {
             alert("Per favore, inserisci il tuo nome! / Please, enter your name!");
             return;
         }
-        
-        let report = `=== RISULTATI COMPITO A CASA - SCALEA ===\\n`;
-        report += `Studente: ${name}\\n\\n`;
-        report += `--- ESERCIZIO 1 (Composizione con distrattori) ---\\n`;
+
+        document.getElementById('form-student').value = name;
+
+        let ex1Results = "";
         for(let i = 1; i <= 10; i++) {
-            report += `Frase ${i}: ${selectedTokens[i].join(' ')}\\n`;
+            ex1Results += `Frase ${i}: ${selectedTokens[i].join(' ')} | `;
         }
-        report += `\\n--- ESERCIZIO 2 (Preposizioni e Verbi) ---\\n`;
+        document.getElementById('form-ex1').value = ex1Results;
+
+        let ex2Results = "";
         for(let i = 1; i <= 6; i++) {
-            report += `Frase 2.${i}: Prep: ${document.getElementById('ex2-p' + i).value} | Verbo: ${document.getElementById('ex2-v' + i).value}\\n`;
+            let p = document.getElementById('ex2-p' + i).value;
+            let v = document.getElementById('ex2-v' + i).value;
+            ex2Results += `2.${i}: [${p} ${v}] | `;
         }
-        report += `==========================================`;
+        document.getElementById('form-ex2').value = ex2Results;
 
-        document.getElementById('report-text').value = report;
-        document.getElementById('report-box').style.display = 'block';
-        document.getElementById('report-box').scrollIntoView({ behavior: 'smooth' });
-    }
+        let status = document.getElementById('status-message');
+        status.style.display = "block";
+        status.innerText = "Invio in corso... Aspetta un secondo.";
 
-    function copyReport() {
-        let copyText = document.getElementById('report-text');
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(copyText.value);
-        alert("Report copiato! Ora puoi inviarlo al prof. / Report copied! Now you can send it to your teacher.");
+        let formData = new FormData(document.getElementById('hidden-form'));
+
+        fetch("https://formbold.com/s/3G7wA", {
+            method: "POST",
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                status.style.color = "green";
+                status.innerText = "✅ Compito inviato con successo! Il professore riceverà le tue risposte.";
+                alert("Grazie! Il tuo compito è stato inviato al professore.");
+            } else {
+                status.style.color = "red";
+                status.innerText = "❌ Errore durante l'invio. Riprova.";
+            }
+        }).catch(error => {
+            status.style.color = "red";
+            status.innerText = "❌ Errore di connessione.";
+        });
     }
 </script>
-
 </body>
 </html>
