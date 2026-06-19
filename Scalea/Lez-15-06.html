@@ -217,13 +217,6 @@
             margin-bottom: 50px;
         }
 
-        #status-message {
-            margin-top: 15px;
-            font-weight: bold;
-            color: var(--secondary);
-            display: none;
-        }
-
         .bg-pronome { background-color: #ec4899; color: white; }
         .bg-verbo { background-color: #3b82f6; color: white; }
         .bg-prep { background-color: #10b981; color: white; }
@@ -233,14 +226,6 @@
 <body>
 
 <div class="container">
-    <!-- Questo form invisibile raccoglie i dati reali per FormBold -->
-    <form id="hidden-form" action="https://formbold.com/s/3G7wA" method="POST" style="display:none;">
-        <input type="text" name="Email_Professore" value="parloitaliano.kz@gmail.com">
-        <input type="text" name="Studente" id="form-student">
-        <input type="text" name="Risultati_Esercizio_1" id="form-ex1">
-        <input type="text" name="Risultati_Esercizio_2" id="form-ex2">
-    </form>
-
     <header>
         <h1>Esercizi d'Italiano: Il Verbo Andare 🏖️</h1>
         <p>Compito a casa per Ian e Renata - Lido Nettuno, Scalea</p>
@@ -259,7 +244,7 @@
             <em>Click on the words in the correct order to build a logical sentence. Watch out for distractors!</em>
         </div>
         
-        <!-- Le 10 frasi con i relativi token pool e distrattori -->
+        <!-- Frase 1 -->
         <p><strong>1.</strong> <em>Dove vanno i ragazzi quando vogliono una pizza?</em></p>
         <div class="card-builder" id="builder-1"></div>
         <div class="token-pool" id="pool-1">
@@ -270,6 +255,7 @@
             <span class="token bg-prep" onclick="addToken(1, this, 'alla')">alla</span>
         </div>
 
+        <!-- Frase 2 -->
         <p><strong>2.</strong> <em>Tu e Irina andate in stazione?</em></p>
         <div class="card-builder" id="builder-2"></div>
         <div class="token-pool" id="pool-2">
@@ -280,6 +266,7 @@
             <span class="token bg-luogo" onclick="addToken(2, this, 'stazione')">stazione</span>
         </div>
 
+        <!-- Frase 3 -->
         <p><strong>3.</strong> <em>Stasera vai a casa di Irina?</em></p>
         <div class="card-builder" id="builder-3"></div>
         <div class="token-pool" id="pool-3">
@@ -290,6 +277,7 @@
             <span class="token bg-luogo" onclick="addToken(3, this, 'Irina')">Irina</span>
         </div>
 
+        <!-- Frase 4 -->
         <p><strong>4.</strong> <em>Dove va Renata con questo caldo?</em></p>
         <div class="card-builder" id="builder-4"></div>
         <div class="token-pool" id="pool-4">
@@ -300,6 +288,7 @@
             <span class="token bg-luogo" onclick="addToken(4, this, 'mare')">mare</span>
         </div>
 
+        <!-- Frase 5 -->
         <p><strong>5.</strong> <em>Cosa fate tu e Ian?</em></p>
         <div class="card-builder" id="builder-5"></div>
         <div class="token-pool" id="pool-5">
@@ -310,6 +299,7 @@
             <span class="token bg-luogo" onclick="addToken(5, this, 'Ristorante')">Ristorante</span>
         </div>
 
+        <!-- Frase 6 -->
         <p><strong>6.</strong> <em>Dove va il professore?</em></p>
         <div class="card-builder" id="builder-6"></div>
         <div class="token-pool" id="pool-6">
@@ -320,6 +310,7 @@
             <span class="token bg-luogo" onclick="addToken(6, this, 'banca')">banca</span>
         </div>
 
+        <!-- Frase 7 -->
         <p><strong>7.</strong> <em>I turisti vogliono un gelato.</em></p>
         <div class="card-builder" id="builder-7"></div>
         <div class="token-pool" id="pool-7">
@@ -330,6 +321,7 @@
             <span class="token bg-luogo" onclick="addToken(7, this, 'gelateria')">gelateria</span>
         </div>
 
+        <!-- Frase 8 -->
         <p><strong>8.</strong> <em>Ian, dove vai adesso?</em></p>
         <div class="card-builder" id="builder-8"></div>
         <div class="token-pool" id="pool-8">
@@ -340,6 +332,7 @@
             <span class="token bg-luogo" onclick="addToken(8, this, 'Lido Nettuno')">Lido Nettuno</span>
         </div>
 
+        <!-- Frase 9 -->
         <p><strong>9.</strong> <em>Renata e Ian vanno dal professore?</em></p>
         <div class="card-builder" id="builder-9"></div>
         <div class="token-pool" id="pool-9">
@@ -350,6 +343,7 @@
             <span class="token bg-luogo" onclick="addToken(9, this, 'professore')">professore</span>
         </div>
 
+        <!-- Frase 10 -->
         <p><strong>10.</strong> <em>Voi andate a fare una passeggiata in centro?</em></p>
         <div class="card-builder" id="builder-10"></div>
         <div class="token-pool" id="pool-10">
@@ -372,27 +366,33 @@
         
         <div class="sentence-row">
             1. "Ian, vai <strong>_______</strong> bar?" &rarr; "Sì, io <input type="text" id="ex2-p1" style="width:50px;"> <input type="text" id="ex2-v1"> adesso."
+            <span class="feedback" id="fb2-1"></span>
         </div>
         <div class="sentence-row">
             2. "Renata, vai <strong>_______</strong> banca?" &rarr; "No, io non <input type="text" id="ex2-p2" style="width:50px;"> <input type="text" id="ex2-v2"> oggi."
+            <span class="feedback" id="fb2-2"></span>
         </div>
         <div class="sentence-row">
             3. "Professore, va <strong>_______</strong> Irina?" &rarr; "Sì, io <input type="text" id="ex2-p3" style="width:50px;"> <input type="text" id="ex2-v3"> da lei per cena."
+            <span class="feedback" id="fb2-3"></span>
         </div>
         <div class="sentence-row">
             4. "Ian e Renata, andate <strong>_______</strong> stazione?" &rarr; "Sì, noi <input type="text" id="ex2-p4" style="width:50px;"> <input type="text" id="ex2-v4"> adesso."
+            <span class="feedback" id="fb2-4"></span>
         </div>
         <div class="sentence-row">
             5. "Vanno <strong>_______</strong> Pizzeria Corsaro?" &rarr; "Sì, loro <input type="text" id="ex2-p5" style="width:50px;"> <input type="text" id="ex2-v5"> a mangiare la pizza."
+            <span class="feedback" id="fb2-5"></span>
         </div>
         <div class="sentence-row">
             6. "Renata, vai <strong>_______</strong> macelleria?" &rarr; "No, io <input type="text" id="ex2-p6" style="width:50px;"> <input type="text" id="ex2-v6"> al supermercato."
+            <span class="feedback" id="fb2-6"></span>
         </div>
     </div>
 
     <div class="actions">
-        <button class="btn" onclick="submitHomework()">Invia al Professore 📑</button>
-        <div id="status-message"></div>
+        <button class="btn" onclick="checkHomework()">Verifica Esercizi / Check ✅</button>
+        <button class="btn btn-secondary" onclick="sendEmail()">Invia al Professore 📑</button>
     </div>
 </div>
 
@@ -418,52 +418,57 @@
         document.querySelectorAll('.token').forEach(t => t.classList.remove('selected'));
     }
 
-    function submitHomework() {
+    function checkHomework() {
+        let correctEx2 = {
+            1: {p: "al", v: "vado"},
+            2: {p: "in", v: "vado"},
+            3: {p: "da", v: "vado"},
+            4: {p: "in", v: "andiamo"},
+            5: {p: "alla", v: "vanno"},
+            6: {p: "in", v: "vado"}
+        };
+
+        for (let i = 1; i <= 6; i++) {
+            let pAns = document.getElementById('ex2-p' + i).value.trim().toLowerCase();
+            let vAns = document.getElementById('ex2-v' + i).value.trim().toLowerCase();
+            let fb = document.getElementById('fb2-' + i);
+
+            if (pAns === correctEx2[i].p && vAns === correctEx2[i].v) {
+                fb.className = "feedback correct";
+                fb.innerText = "⭐ OK!";
+            } else {
+                fb.className = "feedback incorrect";
+                fb.innerText = "❌ Check";
+            }
+        }
+        alert("Controllo completato! Guarda le correzioni dell'Esercizio 2 sulla pagina.");
+    }
+
+    function sendEmail() {
         let name = document.getElementById('student-name').value.trim();
         if (!name) {
             alert("Per favore, inserisci il tuo nome! / Please, enter your name!");
             return;
         }
 
-        document.getElementById('form-student').value = name;
-
-        let ex1Results = "";
+        let email = "parloitaliano.kz@gmail.com";
+        let subject = "Compito d'Italiano (Andare) - " + name;
+        
+        let bodyText = `COMPITO A CASA - SCALEA\n`;
+        bodyText += `Studente: ${name}\n\n`;
+        bodyText += `--- ESERCIZIO 1 ---\n`;
         for(let i = 1; i <= 10; i++) {
-            ex1Results += `Frase ${i}: ${selectedTokens[i].join(' ')} | `;
+            bodyText += `Frase ${i}: ${selectedTokens[i].join(' ')}\n`;
         }
-        document.getElementById('form-ex1').value = ex1Results;
-
-        let ex2Results = "";
+        bodyText += `\n--- ESERCIZIO 2 ---\n`;
         for(let i = 1; i <= 6; i++) {
             let p = document.getElementById('ex2-p' + i).value;
             let v = document.getElementById('ex2-v' + i).value;
-            ex2Results += `2.${i}: [${p} ${v}] | `;
+            bodyText += `2.${i}: Preposizione: [${p}] | Verbo: [${v}]\n`;
         }
-        document.getElementById('form-ex2').value = ex2Results;
 
-        let status = document.getElementById('status-message');
-        status.style.display = "block";
-        status.innerText = "Invio in corso... Aspetta un secondo.";
-
-        let formData = new FormData(document.getElementById('hidden-form'));
-
-        fetch("https://formbold.com/s/3G7wA", {
-            method: "POST",
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                status.style.color = "green";
-                status.innerText = "✅ Compito inviato con successo! Il professore riceverà le tue risposte.";
-                alert("Grazie! Il tuo compito è stato inviato al professore.");
-            } else {
-                status.style.color = "red";
-                status.innerText = "❌ Errore durante l'invio. Riprova.";
-            }
-        }).catch(error => {
-            status.style.color = "red";
-            status.innerText = "❌ Errore di connessione.";
-        });
+        let mailtoUrl = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyText);
+        window.location.href = mailtoUrl;
     }
 </script>
 </body>
