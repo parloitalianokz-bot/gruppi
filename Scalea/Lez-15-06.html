@@ -161,8 +161,12 @@
             border: 2px solid #cbd5e1;
             border-radius: 4px;
             font-size: 11pt;
-            width: 120px;
+            width: 100px;
             text-align: center;
+        }
+
+        .sentence-row input.short {
+            width: 60px;
         }
 
         .sentence-row input:focus {
@@ -176,12 +180,31 @@
             font-weight: bold;
         }
 
-        .feedback.correct {
-            color: var(--success);
+        .feedback.correct { color: var(--success); }
+        .feedback.incorrect { color: var(--error); }
+
+        .explanation-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--accent);
+            padding: 10px 15px;
+            margin-top: 8px;
+            font-size: 10.5pt;
+            border-radius: 4px;
+            display: none;
+            color: #475569;
         }
 
-        .feedback.incorrect {
+        .explanation-box .error-type {
+            font-weight: bold;
             color: var(--error);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .explanation-box em {
+            display: block;
+            color: #64748b;
+            margin-top: 4px;
         }
 
         .btn {
@@ -198,17 +221,9 @@
             margin-top: 10px;
         }
 
-        .btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background-color: #0d5a54;
-        }
+        .btn:hover { background-color: var(--primary-dark); }
+        .btn-secondary { background-color: var(--secondary); }
+        .btn-secondary:hover { background-color: #0d5a54; }
 
         .actions {
             display: flex;
@@ -217,65 +232,11 @@
             margin-bottom: 50px;
         }
 
-        #status-message {
-            margin-top: 15px;
-            font-weight: bold;
-            display: none;
-        }
-
         .bg-pronome { background-color: #ec4899; color: white; }
         .bg-verbo { background-color: #3b82f6; color: white; }
         .bg-prep { background-color: #10b981; color: white; }
         .bg-luogo { background-color: #8b5cf6; color: white; }
     </style>
-
-    <!-- Integrazione Firebase SDK (v9 compatibile via cdn) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-        import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
-
-        // TODO: Inserisci qui le credenziali del tuo database Firebase della scuola Parlo Italiano
-        const firebaseConfig = {
-            apiKey: "LA_TUA_API_KEY",
-            authDomain: "IL_TUO_AUTH_DOMAIN",
-            databaseURL: "IL_TUO_DATABASE_URL",
-            projectId: "IL_TUO_PROJECT_ID",
-            storageBucket: "IL_TUO_STORAGE_BUCKET",
-            messagingSenderId: "IL_TUO_MESSAGING_SENDER_ID",
-            appId: "IL_TUO_APP_ID"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        // Rendiamo la funzione accessibile globalmente per il bottone HTML
-        window.submitToFirebase = function(studentName, ex1Data, ex2Data) {
-            const status = document.getElementById('status-message');
-            status.style.display = "block";
-            status.style.color = "orange";
-            status.innerText = "Salvataggio nel database in corso...";
-
-            const compitiRef = ref(database, 'compiti_scalea');
-            const nuovoCompitoRef = push(compitiRef);
-
-            set(nuovoCompitoRef, {
-                studente: studentName,
-                esercizio1: ex1Data,
-                esercizio2: ex2Data,
-                datainvio: new Date().toISOString()
-            })
-            .then(() => {
-                status.style.color = "green";
-                status.innerText = "✅ Compito salvato nel database! Il professore verificherà le tue risposte.";
-                alert("Ottimo lavoro! Il tuo compito è stato registrato online.");
-            })
-            .catch((error) => {
-                console.error(error);
-                status.style.color = "red";
-                status.innerText = "❌ Errore di salvataggio. Riprova.";
-            });
-        }
-    </script>
 </head>
 <body>
 
@@ -287,7 +248,7 @@
 
     <div class="student-info">
         <label for="student-name">Studente / Student (Name):</label>
-        <input type="text" id="student-name" placeholder="Ian / Renata">
+        <input type="text" id="student-name" placeholder="Inserisci il tuo nome">
     </div>
 
     <!-- ESERCIZIO 1 -->
@@ -308,17 +269,21 @@
             <span class="token bg-pronome" onclick="addToken(1, this, 'Loro')">Loro</span>
             <span class="token bg-prep" onclick="addToken(1, this, 'alla')">alla</span>
         </div>
+        <span class="feedback" id="fb1-1"></span>
+        <div class="explanation-box" id="exp1-1"></div>
 
         <!-- Frase 2 -->
-        <p><strong>2.</strong> <em>Tu e Irina andate in stazione?</em></p>
+        <p><strong>2.</strong> <em>Tu e Irina andate in piazza?</em></p>
         <div class="card-builder" id="builder-2"></div>
         <div class="token-pool" id="pool-2">
             <span class="token bg-prep" onclick="addToken(2, this, 'in')">in</span>
-            <span class="token bg-prep" onclick="addToken(2, this, 'alla')">alla</span>
+            <span class="token bg-prep" onclick="addToken(2, this, 'a')">a</span>
             <span class="token bg-pronome" onclick="addToken(2, this, 'Noi')">Noi</span>
             <span class="token bg-verbo" onclick="addToken(2, this, 'andiamo')">andiamo</span>
-            <span class="token bg-luogo" onclick="addToken(2, this, 'stazione')">stazione</span>
+            <span class="token bg-luogo" onclick="addToken(2, this, 'piazza')">piazza</span>
         </div>
+        <span class="feedback" id="fb1-2"></span>
+        <div class="explanation-box" id="exp1-2"></div>
 
         <!-- Frase 3 -->
         <p><strong>3.</strong> <em>Stasera vai a casa di Irina?</em></p>
@@ -330,6 +295,8 @@
             <span class="token bg-prep" onclick="addToken(3, this, 'a')">a</span>
             <span class="token bg-luogo" onclick="addToken(3, this, 'Irina')">Irina</span>
         </div>
+        <span class="feedback" id="fb1-3"></span>
+        <div class="explanation-box" id="exp1-3"></div>
 
         <!-- Frase 4 -->
         <p><strong>4.</strong> <em>Dove va Renata con questo caldo?</em></p>
@@ -341,6 +308,8 @@
             <span class="token bg-prep" onclick="addToken(4, this, 'al')">al</span>
             <span class="token bg-luogo" onclick="addToken(4, this, 'mare')">mare</span>
         </div>
+        <span class="feedback" id="fb1-4"></span>
+        <div class="explanation-box" id="exp1-4"></div>
 
         <!-- Frase 5 -->
         <p><strong>5.</strong> <em>Cosa fate tu e Ian?</em></p>
@@ -352,6 +321,8 @@
             <span class="token bg-prep" onclick="addToken(5, this, 'al')">al</span>
             <span class="token bg-luogo" onclick="addToken(5, this, 'Ristorante')">Ristorante</span>
         </div>
+        <span class="feedback" id="fb1-5"></span>
+        <div class="explanation-box" id="exp1-5"></div>
 
         <!-- Frase 6 -->
         <p><strong>6.</strong> <em>Dove va il professore?</em></p>
@@ -363,6 +334,8 @@
             <span class="token bg-prep" onclick="addToken(6, this, 'in')">in</span>
             <span class="token bg-luogo" onclick="addToken(6, this, 'banca')">banca</span>
         </div>
+        <span class="feedback" id="fb1-6"></span>
+        <div class="explanation-box" id="exp1-6"></div>
 
         <!-- Frase 7 -->
         <p><strong>7.</strong> <em>I turisti vogliono un gelato.</em></p>
@@ -374,6 +347,8 @@
             <span class="token bg-prep" onclick="addToken(7, this, 'in')">in</span>
             <span class="token bg-luogo" onclick="addToken(7, this, 'gelateria')">gelateria</span>
         </div>
+        <span class="feedback" id="fb1-7"></span>
+        <div class="explanation-box" id="exp1-7"></div>
 
         <!-- Frase 8 -->
         <p><strong>8.</strong> <em>Ian, dove vai adesso?</em></p>
@@ -385,6 +360,8 @@
             <span class="token bg-prep" onclick="addToken(8, this, 'al')">al</span>
             <span class="token bg-luogo" onclick="addToken(8, this, 'Lido Nettuno')">Lido Nettuno</span>
         </div>
+        <span class="feedback" id="fb1-8"></span>
+        <div class="explanation-box" id="exp1-8"></div>
 
         <!-- Frase 9 -->
         <p><strong>9.</strong> <em>Renata e Ian vanno dal professore?</em></p>
@@ -396,6 +373,8 @@
             <span class="token bg-prep" onclick="addToken(9, this, 'dal')">dal</span>
             <span class="token bg-luogo" onclick="addToken(9, this, 'professore')">professore</span>
         </div>
+        <span class="feedback" id="fb1-9"></span>
+        <div class="explanation-box" id="exp1-9"></div>
 
         <!-- Frase 10 -->
         <p><strong>10.</strong> <em>Voi andate a fare una passeggiata in centro?</em></p>
@@ -407,52 +386,111 @@
             <span class="token bg-prep" onclick="addToken(10, this, 'in')">in</span>
             <span class="token bg-luogo" onclick="addToken(10, this, 'centro')">centro</span>
         </div>
+        <span class="feedback" id="fb1-10"></span>
+        <div class="explanation-box" id="exp1-10"></div>
 
-        <button class="btn btn-secondary" onclick="clearEx1()">Cancella e riprova / Clear and retry</button>
+        <button class="btn btn-secondary" onclick="clearEx1()">Svuota risposte Esercizio 1</button>
     </div>
 
     <!-- ESERCIZIO 2 -->
     <div class="card" id="ex2">
         <h2>Esercizio 2: Domande e Risposte a Scalea 💬</h2>
         <div class="instruction">
-            Completa le risposte inserendo la preposizione corretta e la forma del verbo <strong>andare</strong>.
+            Completa le frasi inserendo la preposizione corretta nella domanda e la forma del verbo <strong>andare</strong> nella risposta.
+            <em>Complete the sentences by entering the correct preposition in the question and the right form of "andare" in the answer.</em>
         </div>
         
         <div class="sentence-row">
-            1. "Ian, vai <strong>_______</strong> bar?" &rarr; "Sì, io <input type="text" id="ex2-p1" style="width:50px;"> <input type="text" id="ex2-v1"> adesso."
+            1. Domanda: "Ian, vai <input type="text" id="ex2-p1" class="short" placeholder="prep."> bar?" &rarr; Risposta: "Sì, io <input type="text" id="ex2-v1" placeholder="verbo"> adesso."
             <span class="feedback" id="fb2-1"></span>
+            <div class="explanation-box" id="exp2-1">
+                💡 <strong>al / vado:</strong> "Bar" strictly requires the compound preposition "al". The first person subject "io" links to "vado".
+            </div>
         </div>
         <div class="sentence-row">
-            2. "Renata, vai <strong>_______</strong> banca?" &rarr; "No, io non <input type="text" id="ex2-p2" style="width:50px;"> <input type="text" id="ex2-v2"> oggi."
+            2. Domanda: "Renata, vai <input type="text" id="ex2-p2" class="short" placeholder="prep."> banca?" &rarr; Risposta: "No, io non <input type="text" id="ex2-v2" placeholder="verbo"> oggi."
             <span class="feedback" id="fb2-2"></span>
+            <div class="explanation-box" id="exp2-2">
+                💡 <strong>in / vado:</strong> Places ending in "-ca" take the simple preposition "in" (in banca). Conjugation for "io" is "vado".
+            </div>
         </div>
         <div class="sentence-row">
-            3. "Professore, va <strong>_______</strong> Irina?" &rarr; "Sì, io <input type="text" id="ex2-p3" style="width:50px;"> <input type="text" id="ex2-v3"> da lei per cena."
+            3. Domanda: "Professore, va <input type="text" id="ex2-p3" class="short" placeholder="prep."> Irina?" &rarr; Risposta: "Sì, io <input type="text" id="ex2-v3" placeholder="verbo"> da lei per cena."
             <span class="feedback" id="fb2-3"></span>
+            <div class="explanation-box" id="exp2-3">
+                💡 <strong>da / vado:</strong> People's proper names are always preceded by "da" (da Irina).
+            </div>
         </div>
         <div class="sentence-row">
-            4. "Ian e Renata, andate <strong>_______</strong> stazione?" &rarr; "Sì, noi <input type="text" id="ex2-p4" style="width:50px;"> <input type="text" id="ex2-v4"> adesso."
+            4. Domanda: "Ian e Renata, andate <input type="text" id="ex2-p4" class="short" placeholder="prep."> piazza?" &rarr; Risposta: "Sì, noi <input type="text" id="ex2-v4" placeholder="verbo"> adesso."
             <span class="feedback" id="fb2-4"></span>
+            <div class="explanation-box" id="exp2-4">
+                💡 <strong>in / andiamo:</strong> "Piazza" takes the preposition "in" (in piazza). The plural subject "noi" matches with "andiamo".
+            </div>
         </div>
         <div class="sentence-row">
-            5. "Vanno <strong>_______</strong> Pizzeria Corsaro?" &rarr; "Sì, loro <input type="text" id="ex2-p5" style="width:50px;"> <input type="text" id="ex2-v5"> a mangiare la pizza."
+            5. Domanda: "I turisti vanno <input type="text" id="ex2-p5" class="short" placeholder="prep."> Pizzeria Corsaro?" &rarr; Risposta: "Sì, loro <input type="text" id="ex2-v5" placeholder="verbo"> a mangiare la pizza."
             <span class="feedback" id="fb2-5"></span>
+            <div class="explanation-box" id="exp2-5">
+                💡 <strong>alla / vanno:</strong> Specified restaurant names take the article (alla Pizzeria Corsaro). "Loro" conjugates to "vanno".
+            </div>
         </div>
         <div class="sentence-row">
-            6. "Renata, vai <strong>_______</strong> macelleria?" &rarr; "No, io <input type="text" id="ex2-p6" style="width:50px;"> <input type="text" id="ex2-v6"> al supermercato."
+            6. Domanda: "Renata, vai <input type="text" id="ex2-p6" class="short" placeholder="prep."> macelleria?" &rarr; Risposta: "No, io <input type="text" id="ex2-v6" placeholder="verbo"> al supermercato."
             <span class="feedback" id="fb2-6"></span>
+            <div class="explanation-box" id="exp2-6">
+                💡 <strong>in / vado:</strong> Shop categories ending in "-ia" take "in" (in macelleria).
+            </div>
         </div>
     </div>
 
     <div class="actions">
         <button class="btn" onclick="checkHomework()">Verifica Esercizi / Check ✅</button>
-        <button class="btn btn-secondary" onclick="processAndSubmit()">Invia al Professore Antonio 📑</button>
+        <button class="btn btn-secondary" onclick="resetAll()">Rifare il test / Reset 🔄</button>
     </div>
-    <div id="status-message"></div>
 </div>
 
 <script>
     let selectedTokens = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [] };
+
+    const correctEx1 = {
+        1: { str: "Loro vanno alla Pizzeria Corsaro", p: "alla", v: "vanno" },
+        2: { str: "Noi andiamo in piazza", p: "in", v: "andiamo" },
+        3: { str: "Io vado da Irina", p: "da", v: "vado" },
+        4: { str: "Lei va al mare", p: "al", v: "va" },
+        5: { str: "Noi andiamo al Ristorante", p: "al", v: "andiamo" },
+        6: { str: "Lui va in banca", p: "in", v: "va" },
+        7: { str: "Loro vanno in gelateria", p: "in", v: "vanno" },
+        8: { str: "Tu vai al Lido Nettuno", p: "al", v: "vai" },
+        9: { str: "Loro vanno dal professore", p: "dal", v: "vanno" },
+        10: { str: "Voi andate in centro", p: "in", v: "andate" }
+    };
+
+    const ex1Expls = {
+        1: "We use 'alla' (compound preposition) because the pizzeria has a specific name ('Corsaro'). Without the name, it would be 'in pizzeria'.",
+        2: "Public squares ('piazza') strictly require the simple preposition 'in'. Avoid using 'a'.",
+        3: "When going to a person's house or domain, the preposition 'da' is mandatory. Never use 'a'.",
+        4: "'Mare' requires the compound preposition 'al' (a + il). Also make sure the verb matches 'Lei' (va).",
+        5: "'Ristorante' requires 'al'. Conjunction for 'Noi' is 'andiamo'.",
+        6: "Buildings ending in '-ca' like 'banca' drop the article and take 'in' (in banca).",
+        7: "Shops ending in '-ia' like 'gelateria' take the simple preposition 'in'.",
+        8: "Beach clubs/facilities use 'al' (al Lido). 'Tu' matches with 'vai'.",
+        9: "Going to a professional with a role/title uses 'dal' (da + il).",
+        10: "'In centro' is a fixed idiom for downtown. 'Nel centro' is used only for geometrical centers."
+    };
+
+    function shufflePools() {
+        for (let i = 1; i <= 10; i++) {
+            let pool = document.getElementById('pool-' + i);
+            for (let j = pool.children.length; j >= 0; j--) {
+                pool.appendChild(pool.children[Math.random() * j | 0]);
+            }
+        }
+    }
+
+    window.onload = function() {
+        shufflePools();
+    };
 
     function addToken(step, element, value) {
         if (element.classList.contains('selected')) return;
@@ -469,11 +507,50 @@
         for (let i = 1; i <= 10; i++) {
             document.getElementById('builder-' + i).innerHTML = '';
             selectedTokens[i] = [];
+            document.getElementById('fb1-' + i).innerText = '';
+            document.getElementById('exp1-' + i).style.display = 'none';
         }
-        document.querySelectorAll('.token').forEach(t => t.classList.remove('selected'));
+        document.querySelectorAll('#ex1 .token').forEach(t => t.classList.remove('selected'));
     }
 
     function checkHomework() {
+        // Diagnostica Intelligente Esercizio 1
+        for (let i = 1; i <= 10; i++) {
+            let userAnsStr = selectedTokens[i].join(' ');
+            let fb = document.getElementById('fb1-' + i);
+            let exp = document.getElementById('exp1-' + i);
+            let target = correctEx1[i];
+
+            exp.style.display = "block";
+
+            if (userAnsStr === target.str) {
+                fb.className = "feedback correct";
+                fb.innerText = "⭐ OK!";
+                exp.innerHTML = `✔️ <strong>Correct!</strong> <em>${ex1Expls[i]}</em>`;
+            } else {
+                fb.className = "feedback incorrect";
+                fb.innerText = "❌ Check";
+
+                // Caso 1: Ha inserito il pezzo del verbo sbagliato (Coniugazione)
+                if (selectedTokens[i].includes(target.p) && !selectedTokens[i].includes(target.v) && selectedTokens[i].length > 1) {
+                    exp.innerHTML = `<span class="error-type">⚠️ Verb Conjugation Error</span> Check your verb block! It doesn't match the pronoun. <em>${ex1Expls[i]}</em>`;
+                } 
+                // Caso 2: Ha inserito il pezzo della preposizione sbagliata (Distrattore Preposizione)
+                else if (!selectedTokens[i].includes(target.p) && selectedTokens[i].includes(target.v) && selectedTokens[i].length > 1) {
+                    exp.innerHTML = `<span class="error-type">⚠️ Preposition Error</span> Look at the preposition tile! Places require specific links. <em>${ex1Expls[i]}</em>`;
+                } 
+                // Caso 3: Parole corrette, ma ordine sparso (Sintassi)
+                else if (selectedTokens[i].length === target.str.split(' ').length && selectedTokens[i].includes(target.p) && selectedTokens[i].includes(target.v)) {
+                    exp.innerHTML = `<span class="error-type">⚠️ Word Order (Syntax) Error</span> You picked the correct tiles, but they are in the wrong order. Standard sequence is: **Subject + Verb + Preposition + Place**.`;
+                } 
+                // Caso 4: Incompleto o errori multipli
+                else {
+                    exp.innerHTML = `<span class="error-type">⚠️ Structure Error</span> Keep trying! Combine the right subject, verb, and matching preposition. <em>${ex1Expls[i]}</em>`;
+                }
+            }
+        }
+
+        // Controllo Esercizio 2
         let correctEx2 = {
             1: {p: "al", v: "vado"},
             2: {p: "in", v: "vado"},
@@ -487,6 +564,9 @@
             let pAns = document.getElementById('ex2-p' + i).value.trim().toLowerCase();
             let vAns = document.getElementById('ex2-v' + i).value.trim().toLowerCase();
             let fb = document.getElementById('fb2-' + i);
+            let exp = document.getElementById('exp2-' + i);
+
+            exp.style.display = "block"; 
 
             if (pAns === correctEx2[i].p && vAns === correctEx2[i].v) {
                 fb.className = "feedback correct";
@@ -496,32 +576,22 @@
                 fb.innerText = "❌ Check";
             }
         }
-        alert("Controllo completato! Guarda le correzioni dell'Esercizio 2 sulla pagina.");
+        alert("Verifica completata! Controlla i feedback intelligenti sotto ciascuna frase.");
     }
 
-    function processAndSubmit() {
-        let name = document.getElementById('student-name').value.trim();
-        if (!name) {
-            alert("Per favore, inserisci il tuo nome! / Please, enter your name!");
-            return;
-        }
+    function resetAll() {
+        document.getElementById('student-name').value = '';
+        clearEx1();
 
-        // Strutturiamo i dati dell'esercizio 1
-        let ex1Data = {};
-        for(let i = 1; i <= 10; i++) {
-            ex1Data['frase_' + i] = selectedTokens[i].join(' ');
+        for (let i = 1; i <= 6; i++) {
+            document.getElementById('ex2-p' + i).value = '';
+            document.getElementById('ex2-v' + i).value = '';
+            document.getElementById('fb2-' + i).innerText = '';
+            document.getElementById('exp2-' + i).style.display = 'none';
         }
-
-        // Strutturiamo i dati dell'esercizio 2
-        let ex2Data = {};
-        for(let i = 1; i <= 6; i++) {
-            let p = document.getElementById('ex2-p' + i).value.trim();
-            let v = document.getElementById('ex2-v' + i).value.trim();
-            ex2Data['risposta_2_' + i] = `Prep: ${p} | Verbo: ${v}`;
-        }
-
-        // Chiamiamo la funzione di Firebase inclusa nel tag script module in alto
-        window.submitToFirebase(name, ex1Data, ex2Data);
+        
+        shufflePools();
+        alert("Il test è stato resettato e i mazzi sono stati rimescolati!");
     }
 </script>
 </body>
